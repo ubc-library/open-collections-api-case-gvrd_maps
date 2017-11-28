@@ -78,3 +78,15 @@ Proof of concept of a georeferenced web application using data from the Greater 
 - Set up leaflet in your machine, following the instructions here: http://leafletjs.com/download.html (Building Leaflet from the Source).
 
 - Use the code provided on file [index.html](https://github.com/carolamigo/ubc_gvrd_maps/blob/master/index.html) to run the application.
+
+## References:
+
+- https://maptimeboston.github.io/leaflet-intro/
+- http://joshuafrazier.info/leaflet-basics/
+- https://geekswithlatitude.readme.io/docs/leaflet-map-with-geojson-popups
+- http://leafletjs.com/examples/quick-start/
+- https://github.com/Leaflet/Leaflet/blob/master/debug/map/image-overlay.html
+- http://leafletjs.com/reference-1.2.0.html#imageoverlay
+- http://www.qgistutorials.com/en/#
+- http://leafletjs.com/examples/geojson/
+
