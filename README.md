@@ -7,4 +7,4 @@ Proof of concept of a georeferenced web application using data from the Greater 
 
 ## Interactive Index Map
 
-![leaflet_gif](https://drive.google.com/open?id=1lAVqstvNNI4UsRDyNXqZnve0-0uqPdAy)
+![gvrd_maps.gif](https://github.com/carolamigo/ubc_gvrd_maps/blob/master/gvrd_maps.gif)
