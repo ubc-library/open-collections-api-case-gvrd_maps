@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Great Vancouver Regional District Maps</title>
+
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+
+<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+
+<script src="jquery-2.1.1.min.js"></script>
+
+<style>
+
+#map {
+width: 1200px;
+height: 800px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="map"></div>
+
+<script>
+// Adapted from https://bl.ocks.org/mejackreed/15f4c1c40c36123547f2f401f06248a3
+
+var map = L.map('map');
+
+L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+maxZoom: 19,
+attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>'
+}).addTo(map);
+
+
+
+  var imageUrl = 'http://iiif.library.ubc.ca/image/cdm.gvrdmaps.1-0135075.0000/full/full/0/default.jpg',
+      imageBounds = [[49.434, -123.333], [48.974, -121.638]];
+  var imageOverlay = L.imageOverlay(imageUrl, imageBounds, {opacity: 0.6}).addTo(map);
+
+
+var template = '<div style="min-height: 340px;"><h2>{title}</h2><div><a href="{subject}" target=_blank><img src="{purl}" style="max-width: 300px;"/></a></div>'
+
+function onEach(feature, layer) {
+  layer.on('click', function() {
+    $.getJSON("gvrd_full.geojson", function(info) {
+      var popup = L.popup({
+        keepInView: true
+      })
+        .setContent(L.Util.template(template, {
+          title: feature.properties.title,
+          purl: feature.properties.purl,
+          subject: feature.properties.subject
+        })
+      );
+      layer.bindPopup(popup).openPopup();
+    })
+  })
+}
+
+
+var links =  $.getJSON("gvrd_full.geojson", function(data) {
+    console.log(data);
+    var indexMap = L.geoJson(data, {
+      onEachFeature: onEach,
+      style: function(feature) {
+        return {
+          weight: 1
+        }
+      }
+    }
+  ).addTo(map);
+
+
+var baseMaps = {
+  "Base Map": map
+};
+
+var overlayMaps = {
+  "Index Map": imageOverlay
+};
+
+L.control.layers(baseMaps, overlayMaps).addTo(map);
+
+    map.fitBounds(indexMap.getBounds());
+  });
+
+</script>
+
+</body>
+
+</html>
