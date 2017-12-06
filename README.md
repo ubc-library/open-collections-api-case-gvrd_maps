@@ -7,6 +7,8 @@ Proof of concept of a georeferenced web application using data from the Greater 
 
 ## Interactive Index Map
 
+Link for the application is available on the UBC secure server at: https://leaflet.library.ubc.ca/. UBC on-campus access only, with myvpn connection.
+
 ![gvrd_maps.gif](https://github.com/carolamigo/ubc_gvrd_maps/blob/master/gvrd_maps.gif)
 
 ### How to do it
